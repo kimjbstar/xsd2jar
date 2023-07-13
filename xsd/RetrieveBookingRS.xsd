@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/">
+	<xs:include schemaLocation="RES_SimpleTypes.xsd"/>
+	<xs:include schemaLocation="RES_CommonTypes.xsd"/>
+	<xs:include schemaLocation="CommonTypes.xsd"/>
+	<xs:element name="RetrieveBookingRS">
+	<xs:complexType>
+         <xs:complexContent>
+            <xs:extension base = "urn:BasePnrRSType">
+               <xs:annotation>
+                  <xs:documentation></xs:documentation>
+               </xs:annotation>
+		<xs:sequence>
+			<xs:element name="PNRNumber" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Unique Number for the reservation record.
+					Max Length : 15</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CreationDateAndTime" type="xs:dateTime" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Date and Time of the
+					PNR Creation in the format YYYY-M
+					M-DDThh:mm:ss in GMT
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CreationDateTimeZone" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Time zone of the PNR creation time.
+					Max Length: 9</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastModifiedDateAndTime" type="xs:dateTime" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Date and Time on which
+					the PNR is last
+					modified shown in GMT
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastModfiedDateTimeZone" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>TimeZone on which the last  PNR Modification happened
+					Max Length: 9</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OriginalCaller" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Name of the person
+					who requested this PNR
+					Creation.
+					Max Length : 208
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PnrStatus" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Status of the PNR like CANCELLED, ACTIVE.
+					Max Length : 30
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterlineType" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Values returned can be O/I based on
+					whether the PNR is an
+					inbound interline or
+					outbound interline
+					Max Length: 1
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlatingCarrierCode" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The PlatingCarrierCode is 3 letter code for identifying the airline issueing the ticket
+					Max Length : 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PnrOnHoldIndicator" type="xs:boolean"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This indicator is set as “True" if the PNR is
+					partially paid, or no
+					payment has been
+					made. It is set as “False” if PNR is paid.
+					</xs:documentation>
+				</xs:annotation>
+	       </xs:element>
+			<xs:element name="PricingModel" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>This field indicates the pricing model in which the PNR is priced initially.Possible values are IT for Itinerary Pricing and OD for OD pricing.
+					Max Length : 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>	
+			<xs:element name="PointOfPurchase" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>This is the IATA country code of the Point of Purchase.
+					Max Length: 3</xs:documentation>
+				</xs:annotation>
+			</xs:element>	
+			<xs:element name="PointOfOriginCurrency" type="xs:string" nillable="false">
+				<xs:annotation>
+					 <xs:documentation>Currency code for the point of origin of the PNR
+					 Max Length: 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TourCode" type="xs:string"  minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This the tour code in the Tour Partner
+						Max Length: 15</xs:documentation>
+					</xs:annotation>
+			</xs:element>
+			<xs:element name="ExternalBookingNumber" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					 <xs:documentation>This is Tour Partner
+						booking number that
+						corresponds to iFlyRes
+						PNR number.
+						Max Number: 15
+						</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Itinerary" type="urn:ItineraryDetailsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Indicates the itinerary details.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ItinPrice" type="urn:ItinPriceType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Indicates the pax fare details.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GuestDetails" type="urn:GuestReponseDetailsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Information of the passengers in the itinerary.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PaxBaggageAllowance" type="urn:PaxBaggageAllowanceType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Baggage allowance for passenger</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SSRDetails" type="urn:SSRInformationType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>If there are SSRs attached to the PNR, this type will be populated.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AuxDetails" type="urn:AuxInformationType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>If there are auxillaries
+						attached to the PNR,
+						this type will be
+						populated. Aux Details can be details like Car
+						or Insurance Details
+						</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SeatAssignmentDetails" type="urn:SeatAssignmentDetailsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The seat Details of the pax in PNR.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TravelDocuments" type="urn:TravelDocumentsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The travel documents associated with the guest.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GroupPaxDetails" type="urn:GroupPaxDetailsType"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Group details of the Group PNR </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PnrContact" type="urn:PnrContactType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Contact details of PNR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PnrComments" type="urn:CommentDetailsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>If comments are added in the PNR this will have the value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GuestLoyaltyInfo" type="urn:GuestLoyaltyInfoType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Loyalty details of the PNR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GuestPaymentInfo" type="urn:GuestPaymentInfoType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Payment Details for each passenger. A passenger can have multiple forms of payment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+                  <xs:element name = "FeeInformation" type = "urn:FeeInformationType" minOccurs = "0" maxOccurs = "unbounded">
+			<xs:annotation>
+					<xs:documentation>Fee Details of the SSR ,Itinerary </xs:documentation>
+			</xs:annotation>
+			</xs:element>
+			 <xs:element name = "EMDInformation" type = "urn:EmdInformationDetailsType" minOccurs = "0" maxOccurs = "unbounded">
+			<xs:annotation>
+					<xs:documentation>Emd information of the pnr </xs:documentation>
+			</xs:annotation>
+			</xs:element>
+			<xs:element name="PromoCodeDetails" type="urn:PromoCodeDetailsType"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Details of the promotional code details, if any applied on the PNR.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiscountCouponDetails" type="urn:PaxDiscountCouponDetailsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Array of Coupon details objects to hold the discount coupon details of the reservation. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExternalRecordLocatorDetails" type="urn:ExternalRecordLocatorDetailsType"  minOccurs="0" maxOccurs="unbounded" >
+				<xs:annotation>
+					<xs:documentation>This field will be set in retrieveBooking and in createBooking responses if the ExternalRecordLocatorDetails is available for the PNR. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FarePaidStatus" type="urn:FarePaidStatusDetails_Type"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This field indicates the fare payment status</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EncodedAmountToBeShown" type="urn:PnrPaymentEncodedType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Total Amount for the PNR in Encoded Format. This field will be set based on the configuration for encoding.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAmountDetails" type="urn:TotalAmountDetailsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Total amount details</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeLimitDetails" type="urn:PNRTimeLimitDetailsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>If Time limit is added to the PNR then this field will be filled with the details of Time Limit applied.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAmountToBePaid" type="urn:TotalAmountToBePaidDetailsType"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Holds the total amount pending for the PNR.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAmountPaid" type="urn:TotalAmountPaid"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Holds the total amount paid for the PNR.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorType" type="urn:ErrorType"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Error Type.The reason for error incase the request couldnt be processed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsModifiable" type="xs:boolean"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This is set as "True" if the details can be modified</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsViewable" type="xs:boolean"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This is set as "True" if the details can be viewed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CrossreferenceDetails" type="urn:CrossreferenceDetailsType"  minOccurs="0"  maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cross Referenced details of Splitted PNR.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+	</xs:complexType>
+</xs:element>
+</xs:schema>

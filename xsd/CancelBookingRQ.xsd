@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:urn = "http://www.ibsplc.com/iRes/simpleTypes/" xmlns:xs = "http://www.w3.org/2001/XMLSchema" targetNamespace = "http://www.ibsplc.com/iRes/simpleTypes/">
+   <xs:include schemaLocation = "RES_SimpleTypes.xsd"/>
+   <xs:include schemaLocation = "RES_CommonTypes.xsd"/>
+   <xs:element name = "CancelBookingRQ">
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base = "urn:BasePnrRQType">
+               <xs:annotation>
+                  <xs:documentation></xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element name = "PnrNumber" type = "xs:string" nillable = "false">
+                     <xs:annotation>
+                        <xs:documentation>Unique Number for the reservation record.
+						Max Length : 15</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name = "isLoyaltyCancellation" type = "xs:boolean" minOccurs = "0">
+                     <xs:annotation>
+                        <xs:documentation>This is used only when
+						isCancelPnr field is set as
+						true. This field is  used to compute the
+						penality for
+						cancellation. If this field is set, normally 
+						a lower
+						fee or no fee is applied.
+						</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

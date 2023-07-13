@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/">
+	<xs:include schemaLocation="SimpleTypes.xsd"/>
+	<xs:include schemaLocation="CommonTypes.xsd"/>
+	<xs:include schemaLocation="RES_CommonTypes.xsd"/>	
+	<xs:element name="ShowSeatMapRQ">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+       Show seat map Request schema for the Kiosk and Web Checkin
+  </xs:documentation>
+	</xs:annotation>
+	<xs:complexType>
+		<xs:annotation>
+			<xs:documentation>Example showing seat map retrieval.Flight Route is A-B-C.There is an equipment change in A-B and B-C.User asks the system to retrieve seat map info for A-C ,he sets the board Point as A and OffPoint as C.Child Board Point and Child Offpoint defined in ChildSegmentInfo is also set as A and C.System retreives the seat map for A-B and the response will also consits of the child segments for this segment A-C .This will be A-B and B-C.If the user wants to retrieve the seat map for B-C he sets boardPoint and OffPoint as A and C and Child BoardPoint and OffPoint as B-C.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AirlineCode" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Airline Code of the hosting airline. The airline code is mandatory 
+					Max Length: 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SegmentInfo" type="urn:SegmentInfo" nillable="false">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">This contains the segment for which the SeatMap is displayed.. Mandatory field</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChildSegmentInfo" type="urn:SegmentInfo"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The child segment for which the seat map needs to be retrieved is specified here. In case of direct flight, it is the parent segments itself.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BookingChannel" type="urn:BookingChannelKeyType" nillable="false">
+			<xs:annotation>
+					<xs:documentation>The channel details need to be specified. The services will be executed based on the access rights given to the channel.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PointOfSale" type="xs:string"  minOccurs="0">
+                           <xs:annotation>
+                                 <xs:documentation>Point of Sales of the Ticket
+                                 Max Length: 17</xs:documentation>                                  
+                           </xs:annotation>
+            </xs:element>
+			<xs:element name="TourOperatorCode" type="xs:string" nillable="true" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This field holds the tour operator code.</xs:documentation>
+					</xs:annotation>
+			</xs:element>
+			<xs:element name="FlightIdentifier" type="urn:FlightIdentifierType" nillable="false">
+				<xs:annotation>
+					<xs:documentation>Identifier for the flight.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isSeatFeeRequired" type="xs:boolean" nillable="true" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This is the indicator which decides to show the fee for each seat .If the element is set as false no server side validation logic for assigning fee for seat.</xs:documentation>
+					</xs:annotation>
+			</xs:element>
+			<xs:element name="BundleAncillaries" type="urn:BundleAncillaries" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The list of Bundle Keys</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name = "Itinerary" type = "urn:ItineraryDetailsType" minOccurs="0" maxOccurs="unbounded">
+             	<xs:annotation>
+                 	<xs:documentation>Indicates the itinerary details.</xs:documentation>
+                </xs:annotation>
+             </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+</xs:schema>

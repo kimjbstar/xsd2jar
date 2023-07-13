@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/">
+	<xs:include schemaLocation="SimpleTypes.xsd"/>
+	<xs:include schemaLocation="CommonTypes.xsd"/>
+	<xs:element name="CalendarRetrieveFaresRS">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="IsOnwardTimeViolated" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>This is set to true if the onward time restriction is changed to ANYTIME.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsReturnTimeViolated" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>This is set to true if the return time restriction is changed to ANYTIME</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OnwardBestFareDetails" type="urn:BestFareDetailsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Onward Fares. Populated if onward fares are present</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReturnBestFareDetails" type="urn:BestFareDetailsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Return Fares. Populated if return fares are present</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorType" type="urn:ErrorType"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The reason for error in case there is no data retrieval.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsFareRefreshNeeded" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>This is set to true if the return fares need to be refreshed</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+</xs:schema>

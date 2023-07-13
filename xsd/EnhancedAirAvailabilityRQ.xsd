@@ -1,0 +1,158 @@
+<xs:schema targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/" xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="RES_CommonTypes.xsd"/>
+   <xs:include schemaLocation="SimpleTypes.xsd"/>
+   <xs:include schemaLocation="CommonTypes.xsd"/>
+   <xs:element name="EnhancedAirAvailabilityRQ">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="AirlineCode" type="xs:string" nillable="false">
+               <xs:annotation>
+                  <xs:documentation>Airline on which the guest travels.Mandatory field
+                  Max Length: 6</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+			<xs:element name="ItineraryDetails" type="urn:ItineraryDetailsType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Indicates the itinerary details.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ItineraryPriceDetails" type="urn:ItinPriceType"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Indicates the pax fare details.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OldPricingUnitID" type="xs:int" nillable="false">
+				<xs:annotation>
+					<xs:documentation>This field holds the pricing unit ID of the OD that is being modified in the PNR.The value will be a Natural number (1,2,3...), where each number denotes a pricingunit.For cases where a new OD is being added, or in the case of a fresh search calling for return refresh, a zero is expected in this element.
+					Max Length: 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="AvailabilitySearches" type="urn:NearBySearchType" nillable="false" maxOccurs="unbounded">
+               <xs:annotation>
+                  <xs:documentation>search details required for onward journey.Mandatory field.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="AdvancedSearches" type="urn:AdvancedSearchType"  minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>search details required for Advanced Search.Optional field.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="PaxCountDetails" type="urn:PaxCountType" nillable="false" maxOccurs="unbounded">
+               <xs:annotation>
+                  <xs:documentation>Contains details about the types of passengers and the count of each. Eg : adult - 2</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="TripType" type="urn:TripType" nillable="false">
+               <xs:annotation>
+                  <xs:documentation>OW-OneWay
+                  OJ-OpenJaw
+                  RT-RoundTrip
+                  MC-MultiCity
+                  Max Length: 2</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="FareLevels" type="xs:string" nillable="false" maxOccurs="unbounded">
+               <xs:annotation>
+                  <xs:documentation>Fare level defines the access to fares for the requested channel. This is configured by the airline. Depending on the configuration, requestor can specify one or more fare levels for search.
+                  If an agency (corporate/travel agent) is included in the search, then the fare levels defined in the agency web permission mode configuration will be utilized for availability search.
+                  If the fare level is not specified ,then the fare level accessible for the channel will be utilized for the availability search.
+                  Max Length: 2</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="FareTypes" type="xs:string"  maxOccurs="unbounded" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Added to support different fare Types.
+                  Max Length: 15</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="PointOfPurchase" type="xs:string" nillable="false">
+               <xs:annotation>
+                  <xs:documentation>This is the IATA country code of the Point of Purchase. In addition to the country codes defined in the system, there is also an option to specify the value ‘OTHERS’ in case the point of purchase is outside the countries defined in the system.
+                  Max Length: 6</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+			<xs:element name="OriginalPaymentCurrency" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This is the currency in which the payment for a booking was initially done. The fares will be displayed in this currency 
+					Max Length: 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="BookingChannel" type="urn:BookingChannelKeyType" nillable="false">
+               <xs:annotation>
+                  <xs:documentation>ChannelType and Channel from where the request has originated. The services will be executed based on the access rights given to the channel.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+				<xs:element name="SearchCurrency" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In case of cancel and rebook,PointOfOriginCurrency from RetrieveBooking response should be set in this field.In return refresh(Refreshing return segment fares with onward selected segment) the value from AirAvailabilityRS#OriginDestinationInfo#PricingInfo#PricingComponentInfo#PaxBaseFare@CurrencyCode of the onward selected OD should be set in this field.
+					Max Length: 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="PromoCodeDetails" type="urn:PromoCodeDetails"  minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>PromoCode issued to the passenger.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="TravelAgencyCode" type="xs:string"  minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Unique Identifier for an agency if the agency category is Travel Agency. This is to be filled if a travel agency is logged in. This field is used to customize the result based on the agency.
+                  Max Length: 9</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="CorporateId" type="xs:string"  minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Unique identifier for an agency if the agency category is corporate. This is to be filled if a Corporate Agent is logged in. This field is used to customize the result based on the Corporate agent.
+                  Max Length: 9</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+			<xs:element name="CancelAndRebookInfo" type="urn:CancelAndRebookInfo"  minOccurs="0">
+			 <xs:annotation>
+                  <xs:documentation>This element will have fare class,adult base fare, child base fare,infant base fare and departureDate of the cancelled segment.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+			<xs:element name="ChangeFlightInfo" type="urn:ChangeFlightInfo"  minOccurs="0">
+			 <xs:annotation>
+                  <xs:documentation>This element will have fare basis, fare level ,fare class ,departureDate of the flight which needs to be changed.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+			<xs:element name="PnrCreationTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Creational date of the PNR.The PNR creation time information obtained from the response of RetrieveReservation service is to be provided here.</xs:documentation>
+				</xs:annotation>						
+			</xs:element>
+			<xs:element name="PnrCreationChannelType" type="xs:string"	minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This field denotes the channel type from which the PNR is created.The PNR creation channel type information can be obtained from predecessor service.
+										Max Length: 20
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PnrCreationChannelCode" type="xs:string"	minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This field denotes the channel code from which the PNR is created.The PNR creation channel code information can be obtained from predecessor service.
+										Max Length: 20
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TicketedDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ticketed date of the PNR. The ticketed date that is obtained from the response of RetrieveReservation service is to be provided here. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PricingModel" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This field denotes the pricing model used which PNR creation. There are two possible values for this field
+					1. OD – OD pricing
+					2. IT – Itinerary based pricing
+					Max Length: 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsDisplayAllFare" type="xs:boolean"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This element will decide whether to dispaly all fares for a fare type in case of travel agency search.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

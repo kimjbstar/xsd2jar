@@ -1,0 +1,43 @@
+<xs:schema targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/" xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:include schemaLocation="SimpleTypes.xsd"/>
+   <xs:include schemaLocation="CommonTypes.xsd"/>
+   <xs:element name="EnhancedAirAvailabilityRS">
+      <xs:complexType>
+         <xs:sequence>
+         <xs:element name="Warnings" type="urn:WarningType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Used in conjunction with the Success element to define one or more business errors.</xs:documentation>
+				</xs:annotation>
+			</xs:element>            
+            <xs:element name="OriginDestinationInfo" type="urn:OriginDestinationInfo"  minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+                  <xs:documentation> The product availability offering (flight/fare/SSR) for each AvailabilitySearches element in the request.
+                  This element will contain the response for a successful result.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="AgencyCode" type="xs:string"  minOccurs="0">
+             <xs:annotation>
+                  <xs:documentation>Unique Identifier for an agency if the agency category is Travel Agency
+                  Max Length: 9</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="CorporateCode" type="xs:string"  minOccurs="0">
+            <xs:annotation>
+                  <xs:documentation>Unique identifier for an agency if the agency category is corporate.
+                  Max Length: 9</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="IsFareRefreshRequired" type="xs:boolean"  minOccurs="0">
+             <xs:annotation>
+                  <xs:documentation>This indicator specifies if return refresh is necessary for the particular route</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="ErrorType" type="urn:ErrorType"  minOccurs="0">
+            <xs:annotation>
+                  <xs:documentation>Contains Any Error Messages generated while processing request. Populated only if there are any errors while processing the request. Refer Appendix - ErrorType</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

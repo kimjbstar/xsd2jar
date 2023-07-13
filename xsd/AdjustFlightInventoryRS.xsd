@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/">
+	<xs:include schemaLocation="CommonTypes.xsd"/>
+	<xs:element name="AdjustFlightInventoryRS">
+	<xs:complexType >
+		<xs:sequence>
+			<xs:element name="Status" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>iFlyRes will be returning a Status code: STATUS_OK, if the request got processed successfully.
+					STATUS_FAILURE, if the request cannot be processed.
+					In the case of failure if a detailed description for the failure is needed, it can be fetched from the ErrorType.
+					Max Length: 10</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorType" type="urn:ErrorType"  minOccurs="0">
+			<xs:annotation>
+					<xs:documentation>Contains the error message generated while processing the request. Please see Exceptions section for examples. Refer Appendix - ErrorType_Appendix_3_–</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PnrSessionId" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>To identify the PNR session. During mark seats the given O and D will be added to the PNR State and a Session will be started. That session Id will be returned as part of the mark seats response. This session Id should be passed to createReservation function if mark seats functionality is used. During marked seat polling action, if the session Id given in input is still active, the same session Id will be available in this field. During unmrak seats, no PnrSessionId will be provided in response.
+					Max Length: 25</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+</xs:schema>

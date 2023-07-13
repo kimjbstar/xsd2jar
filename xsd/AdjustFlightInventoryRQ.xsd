@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/">
+	<xs:include schemaLocation="RES_SimpleTypes.xsd"/>
+	<xs:include schemaLocation="RES_CommonTypes.xsd"/>
+	
+	<xs:element name="AdjustFlightInventoryRQ">
+	<xs:complexType>
+	<xs:complexContent>
+    <xs:extension base="urn:BasePnrRQType">
+	    <xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+		    <xs:element name="PnrType" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of pnr that is to be
+						created, like normal, group. 
+						Max Length : 10
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>		
+			<xs:element name="PaxCountDetails" type="urn:PaxCountDetailsType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Contains details about the types of passengers and the count of each. Eg : adult - 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MarkInventoryDetails" type="urn:MarkInventoryDetailsType" minOccurs="0" >
+				<xs:annotation>
+					<xs:documentation>Contains segment details to be marked or unmarked in flight inventory.</xs:documentation>
+				</xs:annotation>
+			</xs:element>  
+			<xs:element name="Action" type="urn:ActionsForSession"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Action to be performed
+						with the session id.
+						Values can be
+						POLL_SESSION (to check if session is valid) ,
+						STOP_SESSION (to unmark the seats). If
+						action is not given, then
+						MARK
+						action is performed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PnrSessionId" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Session Identifier for the PNR.
+					Max Length: 50</xs:documentation>
+				</xs:annotation>
+			</xs:element>							
+		</xs:sequence>
+	</xs:extension>
+    </xs:complexContent>
+	</xs:complexType>
+	</xs:element>
+</xs:schema>
+

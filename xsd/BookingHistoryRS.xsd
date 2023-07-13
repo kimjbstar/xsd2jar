@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/">
+<xs:include schemaLocation="RES_SimpleTypes.xsd"/>
+<xs:include schemaLocation="RES_CommonTypes.xsd"/>
+	<xs:element name="BookingHistoryRS">
+	<xs:complexType >
+		<xs:sequence>
+			<xs:element name="PnrType" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of the PNR.
+					Max Length : 30</xs:documentation>
+				</xs:annotation>
+			</xs:element>   
+           <xs:element name="PnrNumber" type="xs:string"  minOccurs="0">
+			   <xs:annotation>
+				   <xs:documentation>Pnr Number</xs:documentation>
+				</xs:annotation>
+		    </xs:element>
+            <xs:element name = "PNRTransactionInfo" type = "urn:PNRTransactionInfo" minOccurs = "0" maxOccurs = "unbounded">
+               <xs:annotation>
+                   <xs:documentation>This field provides the list of transactions that have occurred in the PNR. Each PNRTransactionInfo indicates each of the modification done in the PNR.</xs:documentation>
+               </xs:annotation>
+            </xs:element>	
+			<xs:element name="ErrorType" type="urn:ErrorType"  minOccurs="0"/>
+			</xs:sequence>
+	</xs:complexType>
+	</xs:element>
+</xs:schema>

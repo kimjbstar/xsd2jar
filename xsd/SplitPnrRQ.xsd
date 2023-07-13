@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/">
+	<xs:include schemaLocation="SimpleTypes.xsd"/>
+	<xs:include schemaLocation="CommonTypes.xsd"/>
+	<xs:element name="SplitPnrRQ">
+	<xs:complexType >
+		<xs:sequence>
+			<xs:element name="AirlineCode" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation> IATA Airline Code
+					Max Length: 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BookingChannel" type="urn:BookingChannelKeyType" nillable="false">
+				<xs:annotation>
+					<xs:documentation>ChannelType and Channel from where the request has originated. The services will be executed based on the access rights given to the channel.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PNRNumber" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>The PNR for which the split is needed.
+					Max Length: 15</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PaxIds" type="xs:string" nillable="false" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The unique identifier of the passenger in the PNR which has to be moved to the new PNR. The PaxIds are available in the retrieve reservation service response.Each  size is 25
+					Max Length: 25</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+</xs:schema>

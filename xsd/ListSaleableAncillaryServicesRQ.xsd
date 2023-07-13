@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/">
+	<xs:include schemaLocation="SimpleTypes.xsd"/>
+	<xs:include schemaLocation="CommonTypes.xsd"/>
+	<xs:include schemaLocation="RES_CommonTypes.xsd"/>
+	<xs:element name="ListSaleableAncillaryServicesRQ">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="AirlineCode" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>IATA Airline Code
+					Max Length: 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BookingChannel" type="urn:BookingChannelKeyType" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The channel details need to be specified. The services will be executed based on the access rights given to the channel.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PointOfSale" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This will be the point of sale of the PNR and will be the output of retrieveReservation service 
+					Max Length: 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name = "Itinerary" type = "urn:ItineraryDetailsType" nillable="false" minOccurs="1" maxOccurs="unbounded"><!-- nillable="false" minOccurs="1"  -->
+             	<xs:annotation>
+                 	<xs:documentation>Indicates the itinerary details.</xs:documentation>
+                </xs:annotation>
+             </xs:element>
+            
+			<xs:element name="FareInfo" type="urn:FareInfoType" nillable="false" minOccurs="1" maxOccurs="unbounded"> <!-- nillable="false" minOccurs="1"  -->
+				<xs:annotation>
+					<xs:documentation>Indicates the pax fare details.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SaleDate" type="xs:date" nillable="false" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Denotes the sale Date of ancillary
+					Max Length: 8</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BundleAncillaries" type="urn:BundleAncillaries" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The list of Bundle Keys</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AgencyCode" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique Identifier for an agency if the agency category is Travel Agency. If specified in the request the search will return all the PNRs created by this AgencyCode,
+					Max Length: 9</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CorporateId" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique identifier for an agency if the agency category is corporate. If specified in the request the search will return all the PNRs created by this corporate.
+					Max Length: 9</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TourOperatorNumber" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Tour Operator Identification
+					Max Length: 9</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PassengerList" type="urn:PassengerList" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Denotes the details of the Passengers in the PNR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsNotifiableSSR" type="xs:boolean"  minOccurs="0">
+			<xs:annotation>
+					<xs:documentation>This value should set as true if the Notifiable SSRs details alone is required. If the field is not set then it will be set with the default value False.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+	</xs:sequence>
+	</xs:complexType>
+</xs:element>
+</xs:schema>

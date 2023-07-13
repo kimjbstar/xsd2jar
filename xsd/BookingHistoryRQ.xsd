@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:urn="http://www.ibsplc.com/iRes/simpleTypes/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ibsplc.com/iRes/simpleTypes/">
+	<xs:include schemaLocation="RES_SimpleTypes.xsd"/>
+	<xs:include schemaLocation="RES_CommonTypes.xsd"/>
+	<xs:element name="BookingHistoryRQ">
+	<xs:complexType >
+		<xs:sequence>
+			<xs:element name="AirlineCode" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>IATA code for the airline</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="BookingChannel" type="urn:BookingChannelType" nillable="false">
+				<xs:annotation>
+					<xs:documentation>ChannelType and Channel from where the request has originated. The services will be executed based on the access rights given to the channel.</xs:documentation>
+				</xs:annotation>
+			</xs:element>						
+			<xs:element name = "PnrNumber" type = "xs:string" nillable = "false">
+                     <xs:annotation>
+                        <xs:documentation>PNR Number for which history is to be retrieved.
+						Max Length : 15</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>		
+           <xs:element name = "Element" type = "xs:string"  minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>This field denotes the specific element for which the history is to be retrieved for the PNR. If this field is not provided the full history will be returned.
+                        Possible values are FULL - Provides the full history, PAYMENT,COMMENT,CONTACT,TICKET ,PRICE ,TRAVEL DOC, ANCILLARY, FLIGHT. With each element, the related element details 
+                        will also be provided with INFO element action. 
+						Max Length : 15</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>	
+		 <xs:element name = "AgencyCode" type = "xs:string" minOccurs = "0">
+                <xs:annotation>
+                    <xs:documentation>IATA Number of the agency in the case of TA Link.
+					Max Length : 9</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	</xs:element>
+</xs:schema>

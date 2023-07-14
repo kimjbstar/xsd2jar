@@ -1,0 +1,9 @@
+PLACE FILES HERE
+
+./xsd
+├── animals
+│   ├── Cat.xsd
+│   ├── Dog.xsd
+├── students
+    ├── Liam.xsd
+    └── John.xsd

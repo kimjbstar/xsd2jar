@@ -3,7 +3,4 @@ services:
   xsd2jar:
     build: .
     volumes:
-     - ${XSD_PATH}:/app/xsd
-     - ${JAR_PATH}:/app/jar
-    environment:
-     JAR_FILE_NAME: ${JAR_FILE_NAME}
+     - ./xsd:/app/xsd

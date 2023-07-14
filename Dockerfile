@@ -4,9 +4,6 @@ FROM openjdk:8
 # Set working directory
 WORKDIR /app
 
-# Copy the xsd files to the container
-COPY xsd /app/xsd
-
 # Copy the necessary JAR files to the container
 COPY libs /app/libs
 

@@ -2,6 +2,9 @@
 
 set -e
 
+# disable max occur limit
+export JAVA_TOOL_OPTIONS="-Djdk.xml.maxOccurLimit=0"
+
 # Set input and output directories
 XSD_INPUT_DIR="/app/xsd/"
 GEN_DIR="/app/gen/"

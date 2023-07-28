@@ -2,7 +2,7 @@
 
 ### description
 
-This will analyze a list of directories in an `XSD` and convert each one to a `JAR`` file. 
+This will analyze a list of directories in an `XSD` and convert each one to a `JAR` file. 
 
 Since it works on a `docker container` basis, it doesn't have to take into account the java version of the host machine.
 
